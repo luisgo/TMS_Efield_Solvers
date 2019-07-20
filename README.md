@@ -1,7 +1,8 @@
 # TMS_Efield_Solvers
-see FEM_slowcodes/testcode.m for guide on how to use FEM codes
 
-Currently under development C versions of FEM codes that run faster and avoid matlab inherent memory leaks. Already working in linux environment will work in windows and mac by June 1st.
-see FEM_MEX_C_codes/testcodemex.m for guide on how to run these FEM codes.
+The codes in "FEM_MEX_C_codes" use matlab MEX interface to speed-up computation and lower memory requirements. They work in linux and windows (have not been tested for ios). See FEM_MEX_C_codes/testcodemex.m for guide on how to run these FEM codes.
 
-BEM codes will be up by June 1st.
+
+If "FEM_MEX_C_codes" do not work use "FEM_slowcodes", which will work in any matlab environment. See FEM_slowcodes/testcode.m for guide on how to use FEM codes
+
+BEM codes will be up by August 1st.
