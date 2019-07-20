@@ -1,5 +1,5 @@
 clear all
-FEMord=1; %choose FEM order
+FEMord=3; %choose FEM order
 
 %%%%%%%%%%%%%%%%%%%%THIS CODE CURRENTLY ONLY WORKS IN LINUX (IT WILL WORK
 %%%%%%%%%%%%%%%%%%%%IF NOT IN LINUX USE SLOW CODES
@@ -10,7 +10,9 @@ FEMord=1; %choose FEM order
 ro(1,:)=0.07*X(:).';
 ro(2,:)=0.07*Y(:).';
 ro(3,:)=0.07*Z(:).';
-
+Z2=.07:-.001:-.01;
+ro2(3,:)=Z2;
+ro2(1:2,:)=0;
 %four layer example
 % The required data structures loaded from file are the following:
 %       tetrahedron to node id (te2p): dimensions 4 nodes by number of tetrahedrons
@@ -45,7 +47,15 @@ x=minres(A,rhs,10^-10,10000,PRECON,PRECON);
 x(end+1)=0;
 %% Step 5 evaluate field at desired locations
 E=FEMinterpolator(ro,x,te2p2,p2,rs,js,FEMord);
+E2=FEMinterpolator(ro2,x,te2p2,p2,rs,js,FEMord);
 
 %% Step 5 plot results
+subplot(2,1,1),
 Emag=sqrt(sum(E.^2,1));%compute Emagnitude
 surf(0.07*X,0.07*Y,0.07*Z,reshape(Emag,size(X)),'edgealpha',0,'facecolor','interp');
+axis equal
+axis off
+colorbar
+subplot(2,1,2),
+Emag2=sqrt(sum(E2.^2,1));%compute Emagnitude
+plot(Z2,Emag2);
