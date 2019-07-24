@@ -1,7 +1,7 @@
 # TMS_Efield_Solvers
 Introduction to the code
 
-This depository contains implementations of all FEM, FDM, and BEM formulations used in “Conditions for numerically accurate TMS electric field simulation,” published in Brain Stimulation Journal. This document introduces the reader into the code requirements, as well as, provides some mathematical background on the different simulation methods.
+This depository contains implementations of all FEM, FDM, and BEM formulations used in “Conditions for numerically accurate TMS electric field simulation,” published in Brain Stimulation Journal. The 'accTMS-codes-manual.pdf' document introduces the reader into the code requirements, as well as, provides some mathematical background on the different simulation methods.
 
 System requirements
 
