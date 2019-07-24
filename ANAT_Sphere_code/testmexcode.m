@@ -1,0 +1,10 @@
+reflev=0;
+load(strcat('../samplescenario',num2str(reflev),'.mat'));
+Esoln1=computefields(rs',js',zeros(size(js')),zeros(size(js(1,:)')),1,20,0.093,ro1');
+Esoln1=real(Esoln1)';
+Esoln2=computefields(rs',js',zeros(size(js')),zeros(size(js(1,:)')),1,20,0.093,ro2');
+Esoln2=real(Esoln2)';
+Esoln3=computefields(rs',js',zeros(size(js')),zeros(size(js(1,:)')),1,20,0.093,ro3');
+Esoln3=real(Esoln3)';
+ Esoln4=computefields(rs',js',zeros(size(js')),zeros(size(js(1,:)')),1,20,0.093,ro4');
+Esoln4=real(Esoln4)';
