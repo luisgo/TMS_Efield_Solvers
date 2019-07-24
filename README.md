@@ -5,4 +5,4 @@ This depository contains implementations of all FEM, FDM, and BEM formulations u
 
 System requirements
 
-FEM, and BEM require the use of windows 64 or Linux operating systems (soon these will be compiled in MacOS). FDM will work on either Windows 64, Linux or MacOS. All codes require a Matlab installation, and FDM and FEM require the PDE toolbox. Finally, these codes should work with most versions of Matlab, however, they have only been tested with Matlab 2010b, and Matlab 2018-2019 versions. If you experience any problems please let me know the operating system and Matlab version, so that I can recompile for these versions. 
+FEM, and BEM require the use of windows 64 or Linux operating systems (soon these will be compiled in MacOS). FDM will work on either Windows 64, Linux or MacOS. All codes require a Matlab installation, and FDM and FEM require the Matlab PDE toolbox. Finally, these codes should work with most versions of Matlab, however, they have only been tested with Matlab 2010b, and Matlab 2018-2019 versions. If you experience any problems please let me know the operating system and Matlab version, so that I can recompile for these versions. 
