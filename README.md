@@ -1,8 +1,8 @@
-# TMS_Efield_Solvers
+See accTMS-codes-manual.pdf for code background.
+Introduction to the code
 
-The codes in "FEM_MEX_C_codes" use matlab MEX interface to speed-up computation and lower memory requirements. They work in linux and windows (have not been tested for ios). See FEM_MEX_C_codes/testcodemex.m for guide on how to run these FEM codes.
+This depository contains implementations of all FEM, FDM, and BEM formulations used in “Conditions for numerically accurate TMS electric field simulation,” published in Brain Stimulation Journal. This document introduces the reader into the code requirements, as well as, provides some mathematical background on the different simulation methods.
 
+System requirements
 
-If "FEM_MEX_C_codes" do not work use "FEM_slowcodes", which will work in any matlab environment. See FEM_slowcodes/testcode.m for guide on how to use FEM codes
-
-BEM codes will be up by August 1st.
+FEM, and BEM require the use of windows and Linux operating systems (soon these will be compiled in MacOS). FDM will work on either Windows 64, Linux or MacOS. All codes require a Matlab installation, and FDM and FEM require the PDE toolbox. Finally, these codes should work with most versions of Matlab, however, they have only been tested with Matlab 2010b, and Matlab 2018-2019 versions. If you experience any problems please let me know the operating system and Matlab version, so that I can recompile for these versions. 
