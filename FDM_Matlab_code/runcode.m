@@ -14,7 +14,7 @@ function [Efield,rce,xval,ncell]=runcode(te2p,p,rs,js,conductivity,ro,dcell)
 te2p=te2p';p=p';
 %% Step 1 run FDM
 tic
-[Efield,RELRES,ITER,RESVEC,condu,Einc,rce,xval,ncell,dcell]=runfdlag(te2p,p,conductivity,rs',js',dcell);
+[Efield,RELRES,ITER,RESVEC,condu,Einc,rce,xval,ncell,dcell]=runfdlag(te2p,p,conductivity,rs,js,dcell);
 toc
 %% Step 2 evaluate field at desired locations
- Efield=fdinterpolatorlag(rce,xval,ro',ncell,dcell,rs',js');
+ Efield=fdinterpolatorlag(rce,xval,ro',ncell,dcell,rs,js);

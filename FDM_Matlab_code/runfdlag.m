@@ -41,7 +41,7 @@ rce(:,1)=XX(:);rce(:,2)=YY(:);rce(:,3)=ZZ(:);
 clear TR XX YY ZZ;
 genmesh=toc
 tic
-Einc=imag(fieldcomputerFMM(rce,rs,js,1));
+Einc=computeEprimary(rs,js,numel(rs)/3,rce',numel(rce)/3).';
 size(Einc)
 ncell
 Einc=permute(reshape(Einc,[ncell(1)+1,ncell(2)+1,ncell(3)+1,3]),[4,1,2,3]);

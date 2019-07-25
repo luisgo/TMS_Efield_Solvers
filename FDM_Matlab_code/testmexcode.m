@@ -33,13 +33,13 @@ ro2(1:2,:)=0;
 %% Step 1 run FDM
 js=js*omega;
 tic
-[Efield,RELRES,ITER,RESVEC,condu,Einc,rce,xval,ncell,dcell]=runfdlag(te2p,p,conductivity,rs',js',dcell);
+[Efield,RELRES,ITER,RESVEC,condu,Einc,rce,xval,ncell,dcell]=runfdlag(te2p,p,conductivity,rs,js,dcell);
 toc
 %% Step 2 evaluate field at desired locations
- E1=fdinterpolatorlag(rce,xval,ro1',ncell,dcell,rs',js');
- E2=fdinterpolatorlag(rce,xval,ro2',ncell,dcell,rs',js');
- E3=fdinterpolatorlag(rce,xval,ro3',ncell,dcell,rs',js');
- E4=fdinterpolatorlag(rce,xval,ro4',ncell,dcell,rs',js');
+ E1=fdinterpolatorlag(rce,xval,ro1',ncell,dcell,rs,js);
+ E2=fdinterpolatorlag(rce,xval,ro2',ncell,dcell,rs,js);
+ E3=fdinterpolatorlag(rce,xval,ro3',ncell,dcell,rs,js);
+ E4=fdinterpolatorlag(rce,xval,ro4',ncell,dcell,rs,js);
 
 %% Step 3 plot results
 subplot(2,1,1),
