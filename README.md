@@ -1,7 +1,7 @@
 # TMS_Efield_Solvers
 Introduction to the code
 
-This depository contains implementations of all 1-3 order FEM, 27 point stencil FDM, and 0th order BEM formulations used in “Conditions for numerically accurate TMS electric field simulation,” published in Brain Stimulation Journal. The "acc-TMS-codes-manual.pdf" document introduces the reader into the code requirements, as well as, provides some mathematical background on the different simulation methods.
+This depository contains implementations of all 1st-3rd order FEM, 27 point stencil FDM, and 0th order BEM formulations used in “Conditions for numerically accurate TMS electric field simulation,” published in Brain Stimulation Journal. The "acc-TMS-codes-manual.pdf" document introduces the reader into the code requirements, as well as, provides some mathematical background on the different simulation methods.
 
 System requirements
 
