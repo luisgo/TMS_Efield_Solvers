@@ -1,26 +1,28 @@
 function [Eout,RELRES,ITER,RESVEC,conductivity,Einc,rce,xval,ncell,dcell]=runfdlag(te2p,p,cond,rs,js,dcell)
 %%%%%%%%%%%%%%%% generate mesh
 tic
+[te2te]=gente2te(te2p);
 p=p';te2p=te2p';
 [XX,YY,ZZ]=ndgrid(min(p(:,1)):dcell(1):max(p(:,1)),...
                   min(p(:,2)):dcell(2):max(p(:,2)),...
                   min(p(:,3)):dcell(3):max(p(:,3)));% cell node locations
-TR=triangulation(double(te2p),p);
 nproc=1;%number of processors can be increased for faster speed here I default to one processor
 if nproc>1
 nst=floor(numel(XX)/(nproc-1));
+    clear robs;
 for i=1:nproc-1
-XXi{i}=XX((i-1)*nst+1:i*nst)+dcell(1)/2;
-YYi{i}=YY((i-1)*nst+1:i*nst)+dcell(2)/2;
-ZZi{i}=ZZ((i-1)*nst+1:i*nst)+dcell(3)/2;
+robs{i}(3,:)=ZZ((i-1)*nst+1:i*nst)+dcell(3)/2;
+robs{i}(2,:)=YY((i-1)*nst+1:i*nst)+dcell(2)/2;
+robs{i}(1,:)=XX((i-1)*nst+1:i*nst)+dcell(1)/2;
 end
 i=nproc;
-XXi{i}=XX((i-1)*nst+1:end)+dcell(1)/2;
-YYi{i}=YY((i-1)*nst+1:end)+dcell(2)/2;
-ZZi{i}=ZZ((i-1)*nst+1:end)+dcell(3)/2;
+    clear robs;
+robs{i}(1,:)=XX((i-1)*nst+1:end)+dcell(1)/2;
+robs{i}(2,:)=YY((i-1)*nst+1:end)+dcell(2)/2;
+robs{i}(3,:)=ZZ((i-1)*nst+1:end)+dcell(3)/2;
 mypool=parpool(nproc);
 parfor i=1:nproc
-teidi{i}=pointLocation(TR,XXi{i}(:),YYi{i}(:),ZZi{i}(:));
+teidi{i}=pointlocation_c(robs{i},te2p'-1,p',te2te,4);
 end
 delete(mypool);
 teid=teidi{1}(:);
@@ -29,16 +31,21 @@ teid=cat(1,teid(:),teidi{i}(:));
 end
 clear teidi;
 else
-teid=pointLocation(TR,XX(:)+dcell(1)/2,YY(:)+dcell(2)/2,ZZ(:)+dcell(3)/2);%sample conductivity at center of each cell
+    
+robs(3,:)=ZZ(:)'+dcell(3)/2;
+robs(2,:)=YY(:)'+dcell(2)/2;
+robs(1,:)=XX(:)'+dcell(1)/2;
+teid=pointlocation_c(robs,te2p'-1,p',te2te,4);
 end
+clear robs;
 conductivity=zeros(size(teid));
-conductivity(isnan(teid)==0)=cond(teid(isnan(teid)==0));
+conductivity(teid~=0)=cond(teid(teid~=0));
 conductivity=reshape(conductivity,size(XX));
 conductivity=conductivity(1:end-1,1:end-1,1:end-1);
 
 ncell=size(conductivity);
 rce(:,1)=XX(:);rce(:,2)=YY(:);rce(:,3)=ZZ(:);
-clear TR XX YY ZZ;
+clear XX YY ZZ;
 genmesh=toc
 tic
 Einc=computeEprimary(rs,js,numel(rs)/3,rce',numel(rce)/3).';

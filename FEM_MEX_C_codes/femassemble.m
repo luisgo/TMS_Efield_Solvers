@@ -1,6 +1,5 @@
 function A=femassemble(te2p,p,reg,FEMord)
-%generates 1nd order FEM matrix
-te2p=te2p-1;
+%generates FEM matrix
 nte=numel(te2p(1,:));
 np=numel(p(1,:));
 if FEMord==1

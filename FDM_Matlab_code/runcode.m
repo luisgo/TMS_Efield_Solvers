@@ -11,7 +11,6 @@ function [Efield,rce,xval,ncell]=runcode(te2p,p,rs,js,conductivity,ro,dcell)
 %       conductivity (conductivity): nte dimensional column vector of conductivity values
 %       ro is 3 by number of observation points
 %       Efield is the Efield at points ro
-te2p=te2p';p=p';
 %% Step 1 run FDM
 tic
 [Efield,RELRES,ITER,RESVEC,condu,Einc,rce,xval,ncell,dcell]=runfdlag(te2p,p,conductivity,rs,js,dcell);

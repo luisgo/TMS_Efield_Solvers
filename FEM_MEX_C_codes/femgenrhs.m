@@ -5,7 +5,6 @@ nsource=numel(rs(1,:));
 %computes rhs for 1nd order FEM using rs and js as sources and te2p and p as meshes
 %convention is second index is for number of elements. For example, te2p is 4 by nte, and p is 3 by np.
 rhs=zeros([np 1]);
-te2p=te2p-1;
 %internal accuracy parameter
 iprec=2;
 if FEMord==1
