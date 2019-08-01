@@ -4,9 +4,10 @@ function xval=bemsolver(t2p,nt,p,np,reg,rs,js,nc)
 %nc number of coil dipoles
 %t2p triangle to points (3 by nt)
 %p cartesian point coordinates (3 by np)
-%epseff contrast function (eps2-eps1)/(eps2+eps1) (nt by 1) 
+%epseff contrast function  (conductivity_inner-conductivity_outer)/(conductivity_inner+conductivity_outer)  (nt by 1) 
 %rs cartesian locations of electrical dipoles (3 by nc)
 %js electrical dipole weight and direction (3 by nc)
+%xval is the magnitude of the charge on each face (i.e. pulse basis expansion coefficients)
 xval=zeros([nt 1]);
 
 %%%%%%%%%%%%modify the following at your own risk%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
