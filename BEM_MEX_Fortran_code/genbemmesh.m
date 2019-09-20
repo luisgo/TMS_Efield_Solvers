@@ -2,7 +2,7 @@ function [t2p,p2,epseff]=genbemmesh(te2p,p,condu)
 %extracts tissue boundary faces from the tetrahedron mesh
 %te2p is the 4 by number of tetrahedrons element array
 %p is the 3 by number of points node location array
-%condu is the number of tetrahedron by one conductivity array 
+%condu is the number of tetrahedron by one conductivity array
 %t2p is 3 by number of boundary triangles
 %p2 is the boundary triangle point array
 %epseff is the (conductivity_inner-conductivity_outer)/(conductivity_inner+conductivity_outer) array
