@@ -1,5 +1,5 @@
 clear all
-FEMord=3; %choose FEM order
+FEMord=1; %choose FEM order
 omega=1;
 reflev=0;
 load(strcat('../samplescenario',num2str(reflev),'.mat'));

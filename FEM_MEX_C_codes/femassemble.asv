@@ -3,7 +3,7 @@ function A=femassemble(te2p,p,reg,FEMord)
 nte=numel(te2p(1,:));
 np=numel(p(1,:));
 if FEMord==1
-batsiz=7*10^6;
+batsiz=5*10^3;
 nte16=16*nte;
 crvindex=zeros([3 nte16]);
 val=zeros([1 nte16]);
@@ -20,7 +20,7 @@ nbat16=16*batsiz;
 crvindexbat=zeros([3 nbat16]);
 valbat=zeros([1 nbat16]);
 mex_id_ = 'assemblemat(i int, i int, i int[xx], i double[xx], i double[x], io int[xx], io double[x])';
-[crvindexbat, valbat] = FEM(mex_id_, batsiz, np, te2p(:,st:en), p, reg(st:en), crvindexbat, valbat,...
+[crvindex, val] = FEM(mex_id_, batsiz, np, te2p(:,st:en), p, reg(st:en), crvindexbat, valbat,...
     4, batsiz, 3, np, batsiz, 3, nbat16, nbat16);
 crvindex(:,ct+1:ct+nbat16)=crvindexbat;
 val(ct+1:ct+nbat16)=valbat(:);
@@ -34,7 +34,7 @@ nbat16=16*batsiz;
 crvindexbat=zeros([3 nbat16]);
 valbat=zeros([1 nbat16]);
 mex_id_ = 'assemblemat(i int, i int, i int[xx], i double[xx], i double[x], io int[xx], io double[x])';
-[crvindexbat, valbat] = FEM(mex_id_, batsiz, np, te2p(:,st:en), p, reg(st:en), crvindexbat, valbat,...
+[crvindex, val] = FEM(mex_id_, batsiz, np, te2p(:,st:en), p, reg(st:en), crvindexbat, valbat,...
     4, batsiz, 3, np, batsiz, 3, nbat16, nbat16);
 crvindex(:,ct+1:ct+nbat16)=crvindexbat;
 val(ct+1:ct+nbat16)=valbat(:);
@@ -42,7 +42,7 @@ end
 
 elseif FEMord==2
 
-batsiz=10^6;
+batsiz=5*10^5;
 nte100=100*nte;
 crvindex=zeros([3 nte100]);
 val=zeros([1 nte100]);
@@ -79,7 +79,7 @@ crvindex(:,ct+1:ct+nbat100)=crvindexbat;
 val(ct+1:ct+nbat100)=valbat(:);
 end
 elseif FEMord==3
-batsiz=3*10^5;
+batsiz=5*10^5;
 nte400=400*nte;
 crvindex=zeros([3 nte400]);
 val=zeros([1 nte400]);
