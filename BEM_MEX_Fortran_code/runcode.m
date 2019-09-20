@@ -66,10 +66,10 @@ mex_id_ = 'computerhsmatlab(i int[xx], i int[x], i double[xx], i int[x], i doubl
 
 Time_for_RHS=toc
 %% step 4 solve system of equations
-epseff=epseff(:)./area(:)/(4*pi);
-xval=tfqmr(@(x)matvec(x,triafl,nquad(1)*nt,Ach,Anear,normal,epseff), ...
+epseff2=epseff(:)./area(:)/(4*pi);
+xval=tfqmr(@(x)matvec(x,triafl,nquad(1)*nt,Ach,Anear,normal,epseff2), ...
 rhs,10^-7,100,[],[],rhs);
-
+clear epseff2
 BEM_matrix_time=toc
 
 %% Step 5 generate obseravtions
