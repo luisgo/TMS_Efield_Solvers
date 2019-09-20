@@ -3,6 +3,7 @@ omega=1;
 reflev=0;
 load(strcat('../samplescenario',num2str(reflev),'.mat'));
 te2p=te2p';p=p';
+
 [E1,t2p,p,epseff,xval]=runcode(te2p,p,rs,omega*js,conductivity,ro1);%generates Efield at ro1
 
 np=numel(p)/3;nt=numel(t2p)/3;nc=numel(rs)/3;
