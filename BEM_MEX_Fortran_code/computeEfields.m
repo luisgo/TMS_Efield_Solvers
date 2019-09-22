@@ -21,7 +21,7 @@ nquad=[3,16];
 %iprec(1) FMM precision flag for computing E-primary iprec(2) and FMM precision flag for matrix vector multiply. Values of iprec 0,1,2,3,4,and 5 typically provide errors of FMM accuracy of 2,3,6,9,12,and 14 digits, respectivelly. Recommended value iprec=[1,0] and [2,0] for error lower than 0.1%.
 iprec=[1,0];
 %dnear is number of average edge lengths of the near-field interactions. Our tests indicate that this is accurate enough for FEM simulations.
-dnear=0.5;
+dnear=1;
 
 % Note: treated as contiguous 1D array as far as C/FORTRAN is concerned:
 mex_id_ = 'evaluateEfield(i int[xx], i int[x], i double[xx], i int[x], i double[x], i double[xx], i double[xx], i int[x], i double[x], i double[xx], i int[x], io double[xx], i int[x], i int[x], i double[x])';

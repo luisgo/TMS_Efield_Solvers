@@ -21,8 +21,8 @@ Generate_mesh_time=toc
 %% Step 2 Generate BEM matrix data structures
 tic
 
-v1=p(:,t2p(2,:))-p(:,t2p(1,:));
-v2=p(:,t2p(3,:))-p(:,t2p(1,:));
+v1=p(:,t2p(1,:))-p(:,t2p(3,:));
+v2=p(:,t2p(2,:))-p(:,t2p(3,:));
 normal=cross(v1,v2,1);
 area=sqrt(normal(1,:).^2+normal(2,:).^2+normal(3,:).^2);
 normal(1,:)=normal(1,:)./area;
@@ -51,10 +51,10 @@ ncols=numel(col);
 nt3=nquad(1)*nt;
 mex_id_ = 'createbemdatastructmatlab(i int[xx], i int[x], i double[xx], i int[x], i double[x], i double[xx], i int[x], i int[x], i int[x], o double[x], o double[xx], i int[x], o int[x], o int[x], o double[x])';
 [potout, triafl, colch, rowch, volch] = BEM(mex_id_, t2p, nt, p, np, area, normal, row, col, ncols, nquad, 3, nt, 1, 3, np, 1, nt, 3, nt, ncols, ncols, 1, ncols, 3, nt3, 2, nt3, nt3, nt3);
-col=col(abs(potout)>10^-12*max(abs(potout)));
-row=row(abs(potout)>10^-12*max(abs(potout)));
-potout=potout(abs(potout)>10^-12*max(abs(potout)));
-Anear=sparse(col,row,potout,nt,nt);
+col=col(abs(potout)>10^-14*max(abs(potout)));
+row=row(abs(potout)>10^-14*max(abs(potout)));
+potout=potout(abs(potout)>10^-14*max(abs(potout)));
+Anear=sparse(row,col,potout,nt,nt);%transpose of Anear
 clear col row potout;
 Ach=sparse(colch,rowch,volch);
 clear colch rowch volch;
@@ -69,7 +69,7 @@ Time_for_RHS=toc
 epseff2=epseff(:)./area(:)/(4*pi);
 xval=tfqmr(@(x)matvec(x,triafl,nquad(1)*nt,Ach,Anear,normal,epseff2), ...
 rhs,10^-7,100,[],[],rhs);
-clear epseff2
+
 BEM_matrix_time=toc
 
 %% Step 5 generate obseravtions
